@@ -14,23 +14,22 @@ function StoreNavbar() {
       <Navbar
         bg="dark"
         variant="dark"
-        className="px-5 d-flex justify-content-between"
-      >
+        className="px-5 d-flex justify-content-between">
         <section className=" d-flex align-items-center">
-          <Navbar.Brand>STORE</Navbar.Brand>
+          <Navbar.Brand><h3>HNS STORE</h3></Navbar.Brand>
           <div className="d-flex gap-3 ">
   
-            <Link className="text-white" to="/">
+            <Link className="text-white" to="/store">
               STORE
             </Link>
-            <Link className="text-white" to="/addtocart">
+            <Link className="text-white addtocart" to="/addtocart">
               ADD TO CART
             </Link>
           </div>
         </section>
 
         <div className="text-white d-flex gap-2">
-          <h4 className="text-white">CART ITEMS: </h4>
+          <h4 className="text-white">Cart Items: </h4>
           <h4 className="text-white">{cartItem.length}</h4>
         </div>
       </Navbar>

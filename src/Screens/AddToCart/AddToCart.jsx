@@ -3,10 +3,16 @@ import StoreNavbar from "../../Components/StoreNavbar/StoreNavbar";
 import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import CardCmp from "../../Components/Card/Card";
+import { useEffect } from "react";
 
 const AddToCart = () => {
   const { cartItem } = useSelector((state) => state.AddToCartReducer);
-
+//  useEffect(() => {
+//   if(){
+    
+//   }
+//  })
+ 
   console.log(cartItem, "cartItem");
   return (
     <div>

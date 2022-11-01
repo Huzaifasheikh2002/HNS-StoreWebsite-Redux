@@ -17,7 +17,8 @@ function ColorSchemesExample() {
           <div className="d-flex gap-3 ">
        
             <Link className="text-white" to="/">
-              STORE
+           
+
             </Link>
           </div>
         </section>

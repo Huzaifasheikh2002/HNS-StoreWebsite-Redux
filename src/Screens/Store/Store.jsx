@@ -7,12 +7,15 @@ import CardCmp from "../../Components/Card/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductAtion } from "../../store/Actions/product";
 
+
+
 const Store = () => {
   const dispatch = useDispatch();
   const { data, dataLoading } = useSelector((state) => state.GetProductReducer);
   useEffect(() => {
     dispatch(getProductAtion());
   }, []);
+
 
   //   const fetchData = async () => {};
   return (

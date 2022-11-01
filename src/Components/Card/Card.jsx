@@ -1,20 +1,37 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useDispatch } from "react-redux";
-import {
-  AddtoCartAction,
-  RemovetoCartAction,
-} from "../../store/Actions/product";
+import { collection, addDoc } from "firebase/firestore"; 
+import { db } from "../../firebase";
+import { AddtoCartAction, RemovetoCartAction,} from "../../store/Actions/product";
+import { async } from "@firebase/util";
 
 function CardCmp({ product, removeBtn }) {
   const dispatch = useDispatch();
   console.log("product", product);
-  const addToCart = () => {
+
+      // create collection
+      const dbCollection =collection(db,"StoreWebCollection")
+      // console.log(db,"db");
+
+  const addToCart = async () => {
     dispatch(AddtoCartAction(product));
+    // firestore database
+    const obj={
+      StoreWebValue:product.title,
+    };
+   await addDoc(dbCollection,obj);
+    // firestore database
+    
+    localStorage.setItem("id", product.id)
+    console.log(product.id)
+
   };
   const removeToCart = () => {
     dispatch(RemovetoCartAction(product));
   };
+
+
   return (
     <Card style={{ width: "100%" }}>
       <Card.Img
@@ -31,7 +48,7 @@ function CardCmp({ product, removeBtn }) {
             Remove to cart
           </Button>
         ) : (
-          <Button variant="primary" onClick={addToCart}>
+          <Button variant="primary" className="addtoCart" onClick={addToCart}>
             Add to Cart
           </Button>
         )}
