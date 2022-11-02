@@ -3,26 +3,38 @@ import React from 'react'
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { auth } from '../firebase';
+import { auth ,db} from '../firebase';
+
+import { collection, addDoc } from "firebase/firestore"; 
+
 
 const SignupPage = () => {
 
-  const [fullname,setFullname]=useState("")
+  const [fullName,setFullname]=useState("")
   const [email,setEmail]=useState("")
   const [password,setPassword]=useState("")
+  console.log(auth, "auth");
 
   const signupHandler=(e)=>{
     console.log("submit");
+    const dbCollection =collection(db,"users")
+
     e.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
-    .then((resolve)=>{
+    .then(async(resolve)=>{
         console.log(resolve,"resolve");
+
+      const obj={
+        fullName,
+        email,
+      };
+        await addDoc(dbCollection,obj);
     })
     .catch(error=>{
       console.log(error,"error");
 
-    })
-  }
+    });
+  };
 
   return (
   <section className='conatiner mt-5'>

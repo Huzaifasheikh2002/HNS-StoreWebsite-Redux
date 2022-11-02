@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { collection, addDoc } from "firebase/firestore"; 
 import { db } from "../../firebase";
 import { AddtoCartAction, RemovetoCartAction,} from "../../store/Actions/product";
-import { async } from "@firebase/util";
 
 function CardCmp({ product, removeBtn }) {
   const dispatch = useDispatch();
