@@ -12,14 +12,19 @@ function App() {
     <>
  <Routes>
         {/* <Route path="/todo" element={<Todo/>}></Route> */}
-        <Route path="/addtocart" element={<AddToCart />} />
-        <Route path="/"  element={<Login/>}></Route> 
+        <Route index element={<Login/>}></Route> 
+
         <Route path='/signup'element={<SignUp />}></Route>  
-    <Route element={<ProtectedRoute/>}>
-    <Route path="/store" element={<Store/>} />
+
+        <Route element={<ProtectedRoute/>}>
+            <Route path="/store" element={<Store/>} ></Route>
+           <Route path="/addtocart" element={<AddToCart />}></Route>
+
+        </Route>
+
         {/* <Route path="/website" element={<Website/>}></Route> */}
-   </Route>
 </Routes>
+{/*  */}
           {/* main todo jisme login signup hai */}
     {/* End main todo jisme login signup hai */}
     </>
