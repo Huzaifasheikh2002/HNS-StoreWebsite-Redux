@@ -6,21 +6,25 @@ import { db } from "../../firebase";
 import { AddtoCartAction, RemovetoCartAction,} from "../../store/Actions/product";
 import { useState } from "react";
 
+
 function CardCmp({ product, removeBtn }) {
 
   // const [productData ,setProductData ]=useState([])
+
   const dispatch = useDispatch();
+
+
   console.log("product", product);
 
       // create collection
-      const dbCollection =collection(db,"StoreWebCollection")
+      const dbCollection =collection(db,"WebCollection")
       // console.log(db,"db");
 
   const addToCart = async () => {
     dispatch(AddtoCartAction(product));
     // firestore database
     const obj={
-      StoreWebValue:product.title,
+      ProductData:product.title,
     };
    await addDoc(dbCollection,obj);
     // firestore database
@@ -29,7 +33,7 @@ function CardCmp({ product, removeBtn }) {
     console.log(product.id)
 
   };
-  const removeToCart =async () => {
+  const removeToCart = () => {
     dispatch(RemovetoCartAction(product));
     // const id = productData[index].id;
     // const dbRef =doc(db,"StoreCollection",id)
@@ -50,10 +54,12 @@ function CardCmp({ product, removeBtn }) {
   //   setTodoItem([...todoItem]); 
   // };
   // 
+  // {productData.map((product, index) => {
 
   return (
-    
-    <Card style={{ width: "100%" }}>
+  
+      <Card 
+      style={{ width: "100%" }}>
       <Card.Img
         variant="top"
         className="w-100"
@@ -63,9 +69,11 @@ function CardCmp({ product, removeBtn }) {
       <Card.Body>
         <Card.Title>{product.title}</Card.Title>
         <Card.Text>{product.price}</Card.Text>
-        {removeBtn ? (
+
+
+      {removeBtn ? (
           <Button variant="primary" 
-          onClick={()=>removeToCart()}>
+       onClick={()=>removeToCart()}>
             Remove to cart
 
 
@@ -80,7 +88,7 @@ function CardCmp({ product, removeBtn }) {
       </Card.Body>
     </Card>
   );
-
 }
+
 
 export default CardCmp;
